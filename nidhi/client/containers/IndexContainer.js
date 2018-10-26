@@ -5,7 +5,7 @@ import { actionSuccess, actionFail } from '../helpers/action';
 import { ACTION_SIGN_IN_STATUS, ACTION_USER_PROFILE } from '../constants';
 import { getCurrentUser } from '../actions/login';
 
-var IndexContainer = React.createClass({
+const IndexContainer = React.createClass({
 
     componentWillReceiveProps(nextProps, prevProps) {
         if (actionSuccess(ACTION_SIGN_IN_STATUS, nextProps.login.type, nextProps.login.actionStatus)) {

@@ -16,11 +16,11 @@ import { signInStatus, signOut } from "../actions/login";
 import { push } from "react-router-redux";
 import { connect } from "react-redux";
 import { RootContainer } from "../containers/RootContainer";
-let isLoaded = false;
+const isLoaded = false;
 let interval;
 let promise;
 let firebase;
-let fileUploadArray = [];
+const fileUploadArray = [];
 let fireStore;
 
 export function firebaseServiceInit(config, store) {
@@ -30,8 +30,7 @@ export function firebaseServiceInit(config, store) {
         if (window.firebase) {
             firebase = window.firebase;
             configure(config, resolve);
-        }
-        else {
+        } else {
             loadExternal();
             interval = setInterval(() => {
                 if (window.firebase) {
@@ -53,7 +52,8 @@ export function modelsAll() {
         const uid = app.auth().currentUser.uid;
 
         return new Promise((resolve, reject) => {
-            app.database().ref().child('/user/' + uid + '/model').once('value').then(function (modelIds) {
+            app.database().ref().child(`/user/${uid}/model`).once('value').then(
+(modelIds) => {
                 const modelPromises = _.map(modelIds.val(), (value, modelId) => {
                     return modelsLoad(modelId);
                 });
@@ -64,7 +64,8 @@ export function modelsAll() {
             },
                 (error) => {
                     resolve(null);
-                });
+                }
+);
         });
     });
 }
@@ -75,7 +76,7 @@ export async function modelsLoad(modelId) {
             const uid = app.auth().currentUser.uid;
 
             return new Promise((resolve, reject) => {
-                app.database().ref('/model/' + modelId).once('value').then(
+                app.database().ref(`/model/${modelId}`).once('value').then(
                     (model) => { resolve(model.val()); },
                     (error) => { resolve(null); }
                 );

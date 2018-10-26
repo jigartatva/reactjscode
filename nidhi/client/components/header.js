@@ -8,6 +8,7 @@ import { modelsNew, modelsList } from '../actions/models';
 import { updateProfile, getCurrentUser, updateUserPassword, updateUserPicture } from '../actions/login';
 import { trackEvent } from '../helpers/mixpanel';
 import { setSearchKeyword } from '../actions/actions';
+
 /* Material UI */
 import { AppBar as MaterialAppBar } from 'material-ui';
 import IconMenu from 'material-ui/IconMenu';
@@ -17,7 +18,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton'
 import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
-/* react toolbox */
+
+/* React toolbox */
 import { Button } from 'react-toolbox/lib/button';
 import { AppBar, Checkbox, FontIcon } from 'react-toolbox';
 import { Layout, NavDrawer, Panel, Sidebar, Snackbar } from 'react-toolbox';
@@ -26,7 +28,8 @@ import { Menu, MenuDivider } from 'react-toolbox/lib/menu';
 import Dialog from 'react-toolbox/lib/dialog';
 import Input from 'react-toolbox/lib/input';
 import ShowTutorialDialog from './models/ShowTutorialDialog';
-/* components */
+
+/* Components */
 import LoveSpreads from './LoveSpreads';
 import ShowWelcomeDialog from './ShowWelcomeDialog';
 import ShowPlanModelDialog from './ShowPlanModelDialog';
@@ -47,7 +50,7 @@ const Header = React.createClass({
             photoURL: '',
             newPassword: '',
             confirmPassword: '',
-            errorMsg: '', // display local error message
+            errorMsg: '', // Display local error message
             messagetype: 0,
             searchKeyword: '',
             showSnackBar: false,
@@ -74,14 +77,13 @@ const Header = React.createClass({
 
     componentWillReceiveProps(nextProps) {
         const { type, actionStatus, displayName, email, message, photoURL, emailVerified } = nextProps.login;
-    
+
         if (type == "ACTION_UPDATE_PROFILE" && actionStatus == "ACTION_STATUS_SUCCESS") {
             if (this.state.active) {
                 this.setState({
                     showSnackBar: true,
                 });
-            }
-            else {
+            } else {
                 this.setState({
                     showSnackBar: false,
                 });
@@ -145,7 +147,7 @@ const Header = React.createClass({
     },
 
     validateForm() {
-        var errorMessage = '';
+        let errorMessage = '';
         if (!_.isEmpty(this.state.newPassword)) {
             if (_.isEmpty(this.state.confirmPassword)) {
                 errorMessage += 'Please enter confirm password. \n';
@@ -196,33 +198,33 @@ const Header = React.createClass({
         }
     },
     handleClick() {
-        if(this.state.accountDropdownOpen){
+        if (this.state.accountDropdownOpen) {
             document.removeEventListener('click', this.handleOutsideClick,false);
             trackEvent('Closing the Account Dropdown menu');
-            // if(!this.state.isSelected){
-                this.setState({accountDropdownOpen:false});
+            // If(!this.state.isSelected){
+                this.setState({ accountDropdownOpen: false });
             // }
         } else {
             document.addEventListener('click', this.handleOutsideClick,false);
         }
-        
-    }, 
+
+    },
     handleOutsideClick(e) {
-    // ignore clicks on the component itself
+    // Ignore clicks on the component itself
     if (this.node && this.node.contains(e.target)) {
         return;
     }
-    
+
     this.handleClick();
   },
     uploaddDisplayPicture(event) {
         event.stopPropagation();
         if (event.target.files.length) {
-            var fileToUpload = event.target.files[0];
+            const fileToUpload = event.target.files[0];
             this.props.updateUserPicture(fileToUpload);
         } else {
-            this.setState({isSelected:false});
-            return;
+            this.setState({ isSelected: false });
+
         }
     },
 
@@ -252,20 +254,18 @@ const Header = React.createClass({
             }
         ];
         const headerTitle = <Button icon='add'
-                                    style={(this.props.loading == true || this.props.open == true) ?  { display: 'none' } : { display: 'block', margin: '14px 0' }}
+                                    style={(this.props.loading == true || this.props.open == true) ? { display: 'none' } : { display: 'block', margin: '14px 0' }}
                                     onClick={() => {
                                         return ((this.props.totalmodel >= this.props.planMetaData.free_models) && (this.props.planMetaData.free_models != -1))
-                                            ?
-                                            this.setState({ openPlanModel: !this.state.openPlanModel })
-                                            :
-                                            this.setState({ addNewModelMenuOpen: !this.state.addNewModelMenuOpen })
+                                            ? this.setState({ openPlanModel: !this.state.openPlanModel })
+                                            : this.setState({ addNewModelMenuOpen: !this.state.addNewModelMenuOpen })
                                         }
                                     }
                                     raised accent label="New Model"
                                     disabled={(this.props.loading == true || this.props.open == true) ? true : false}/>;
-        var divStyle = {
+        const divStyle = {
             backgroundSize: 'cover',
-            backgroundImage: 'url(' + photoURL + ')'
+            backgroundImage: `url(${photoURL})`
         }
         return (
             <div className={styles.header}>
@@ -293,10 +293,8 @@ const Header = React.createClass({
                     </div>
                     <div className={styles.headerActions}>
                         {this.state.accountDropdownOpen
-                            ?
-                            <span className={(!_.isEmpty(this.state.photoURL)) ? styles.topArrow : styles.topArrowWithNoPhoto} ></span>
-                            :
-                            ''
+                            ? <span className={(!_.isEmpty(this.state.photoURL)) ? styles.topArrow : styles.topArrowWithNoPhoto} ></span>
+                            : ''
                         }
                         <IconMenu
                             className={styles.iconMenu}
@@ -313,26 +311,23 @@ const Header = React.createClass({
                                 onClick={() => { this.handleClick(); }}
                             >
                                 {!_.isEmpty(this.state.photoURL)
-                                    ?
-                                    <IconButton
+                                    ? <IconButton
                                         style={{ padding: '5px' }}
                                         onClick={() => { trackEvent('Opening Account Dropdown'); this.setState({ accountDropdownOpen: true }); }}
                                     >
                                         <div className={styles.inlineBlock}>
-                                            <div className={styles.accountDropDown + ' ' + styles.accountDropDownIcon} style={divStyle}></div>
+                                            <div className={`${styles.accountDropDown} ${styles.accountDropDownIcon}`} style={divStyle}></div>
                                         </div>
                                         <FontIcon className="material-icons" className={styles.accountDropDown}>arrow_drop_down</FontIcon>
                                     </IconButton>
-                                    :
-                                    <IconButton style={{ padding: '5px' }} onClick={() => { trackEvent('Opening Account Dropdown'); this.setState({ accountDropdownOpen: true }); }} className={styles.accountDropDown} >
-                                        <FontIcon className={styles.accountCircleClass + " material-icons"} style={{ fontSize: '3.6rem !important', color: 'rgb(136, 136, 136)' }} >account_circle</FontIcon>
-                                        <FontIcon className={styles.downArrowClass + " material-icons"} >arrow_drop_down</FontIcon>
+                                    : <IconButton style={{ padding: '5px' }} onClick={() => { trackEvent('Opening Account Dropdown'); this.setState({ accountDropdownOpen: true }); }} className={styles.accountDropDown} >
+                                        <FontIcon className={`${styles.accountCircleClass} material-icons`} style={{ fontSize: '3.6rem !important', color: 'rgb(136, 136, 136)' }} >account_circle</FontIcon>
+                                        <FontIcon className={`${styles.downArrowClass} material-icons`} >arrow_drop_down</FontIcon>
                                     </IconButton>
                                 }
                             </a>
                             {this.state.accountDropdownOpen
-                                ?
-                                <Menu className={(!_.isEmpty(this.state.photoURL)) ? styles.accountMenuClass : styles.accountMenuClassWithNoPhoto} ref={(ref) => this.accountDropDownRef1 = ref} >
+                                ? <Menu className={(!_.isEmpty(this.state.photoURL)) ? styles.accountMenuClass : styles.accountMenuClassWithNoPhoto} ref={(ref) => this.accountDropDownRef1 = ref} >
                                     <MenuItem
                                         disabled={true}
                                         ref={(ref) => this.accountDropDownRef2 = ref}
@@ -342,17 +337,15 @@ const Header = React.createClass({
                                             <div ref="accountDropDownRef3" className={styles.accountDropDown}>
 
                                                 {!_.isEmpty(this.state.photoURL)
-                                                    ?
-                                                    <div style={{ display: 'inline-block', height: '80px', width: '80px', overflow: 'hidden', borderRadius: '50%' }} className={styles.changePictureButton} >
+                                                    ? <div style={{ display: 'inline-block', height: '80px', width: '80px', overflow: 'hidden', borderRadius: '50%' }} className={styles.changePictureButton} >
                                                         <div className={styles.changeButtonOuter} style={divStyle} >
                                                             <a className={styles.avatarChangeButton} onClick={(e) => { this.uploadDisplayPicture.click(); this.setState({ isSelected: true }) }} >change</a>
                                                         </div>
                                                     </div>
-                                                    :
-                                                    <div style={{ display: 'inline-block', height: '85px', width: '85px', overflow: 'hidden' }} className={styles.changePictureButton} >
+                                                    : <div style={{ display: 'inline-block', height: '85px', width: '85px', overflow: 'hidden' }} className={styles.changePictureButton} >
                                                         <FontIcon className="material-icons"
                                                         style={{ backgroundColor: 'transparent', fontSize: '93px', display: 'flex', marginLeft: '-5px', color: 'rgb(136, 136, 136)', cursor: 'pointer !important' }} >account_circle</FontIcon>
-                                                        <div className={styles.changeButtonOuterWhenNoIcon}  >
+                                                        <div className={styles.changeButtonOuterWhenNoIcon} >
                                                             <a className={styles.avatarChangeButton} onClick={(e) => { this.uploadDisplayPicture.click(); this.setState({ isSelected: true }) }} >change</a>
                                                         </div>
                                                     </div>
@@ -403,15 +396,14 @@ const Header = React.createClass({
                                         className={styles.signOutOuter}
                                         children={
                                             <Button raised
-                                                className={styles.letsGoButton + ' ' + styles.signoutButton}
+                                                className={`${styles.letsGoButton} ${styles.signoutButton}`}
                                                 label="Sign out"
                                                 onClick={() => { trackEvent('Logging Out via Account Dropdown'); this.props.logout(); this.setState({ accountDropdownOpen: false }); }}
                                             />
                                         }
                                     />
                                 </Menu>
-                                :
-                                ''
+                                : ''
                             }
                         </div>
                     </div>

@@ -23,9 +23,9 @@ import ShowWelcomeDialog from '../components/ShowWelcomeDialog';
 import DeleteModelDialog from '../components/DeleteModelDialog';
 import Snackbar from 'material-ui/Snackbar';
 import config from '../config';
-const productAPI = config.paymentURL + '/product/';
+const productAPI = `${config.paymentURL}/product/`;
 
-var ModelsContainer = React.createClass({
+const ModelsContainer = React.createClass({
     deleteTimeout: null,
     getInitialState() {
         return {
@@ -57,11 +57,11 @@ var ModelsContainer = React.createClass({
     componentWillMount() {
     },
     componentWillReceiveProps(nextProps, nextState) {
-        var allModelName = [];
+        const allModelName = [];
         _.delay(() => {
             fetch(productAPI).then(res => res.json()).then(res => {
                 const planId = this.props.productid || res.data[1].id;
-                const planid = _.find(res.data, function (planvalue) {
+                const planid = _.find(res.data, (planvalue) => {
                     if (planId == planvalue.id) {
                         return planvalue;
                     }
@@ -79,13 +79,13 @@ var ModelsContainer = React.createClass({
             if (actionSuccess(ACTION_MODELS_DELETE, nextProps.actionType, nextProps.actionStatus)) {
                 this.props.modelsList();
             }
-            if (actionSuccess(ACTION_MODELS_LIST, nextProps.actionType, nextProps.actionStatus)
-                || actionFail(ACTION_MODELS_LIST, nextProps.actionType, nextProps.actionStatus)) {
+            if (actionSuccess(ACTION_MODELS_LIST, nextProps.actionType, nextProps.actionStatus) ||
+                actionFail(ACTION_MODELS_LIST, nextProps.actionType, nextProps.actionStatus)) {
                 this.setState({ isLoading: false });
-                var Ids = _.map(this.props.models, (model) => {
+                const Ids = _.map(this.props.models, (model) => {
                     if (model.id) { return model.id; }
                 });
-                const countModel = _.filter(this.props.models, function (model) {
+                const countModel = _.filter(this.props.models, (model) => {
                     if (model.id) {
                         allModelName.push(model.name);
                         return model;
@@ -97,7 +97,7 @@ var ModelsContainer = React.createClass({
                 this.setState({ modelIds: _.compact(Ids), totalModel: countModel.length, modellist: countModel });
             }
             if (actionSuccess(ACTION_MODELS_LIST, nextProps.actionType, nextProps.actionStatus) && window.firebase && window.FS) {
-                var user = window.firebase.auth().currentUser;
+                const user = window.firebase.auth().currentUser;
                 window.FS.identify(user.uid, {
                     displayName: user.displayName,
                     email: user.email,
@@ -114,7 +114,7 @@ var ModelsContainer = React.createClass({
     },
 
     isWordExist(keyword, string) {
-        var personRegExp = new RegExp(keyword, 'gi');
+        const personRegExp = new RegExp(keyword, 'gi');
         if (personRegExp.test(string)) {
             return true;
         } else {
@@ -193,14 +193,14 @@ var ModelsContainer = React.createClass({
         );
     },
 
-    //delete current selected model from list
+    // Delete current selected model from list
 
     deleteCurrentModel(currentModelID, currentModelName) {
         clearTimeout(this.deleteTimeout);
         const { modelsDelete } = this.props;
-        const msg = currentModelName + " has been deleted.";
+        const msg = `${currentModelName} has been deleted.`;
         this.setState({ open: true, isactive: false, deletedModel: currentModelID, message: msg });
-        var modelListIds = this.state.modelIds;
+        let modelListIds = this.state.modelIds;
         if (currentModelID) {
             modelListIds = _.pull(modelListIds, currentModelID);
             this.setState({ modelIds: modelListIds });
@@ -216,7 +216,7 @@ var ModelsContainer = React.createClass({
     handleActionClick() {
         this.setState({ open: false, deletedModel: null });
         clearTimeout(this.deleteTimeout);
-        this.props.modelsList(); // get list of models.
+        this.props.modelsList(); // Get list of models.
     },
 
     deletehandleToggle() {
@@ -275,7 +275,7 @@ function mapDispatchToProps(dispatch) {
             dispatch(modelsNameList(modelsname));
         },
         modelNewSuccess: (modelId) => {
-            dispatch(push('/model/' + modelId));
+            dispatch(push(`/model/${modelId}`));
         },
         navigateToLoginScreen: () => {
             dispatch(push('/login'));

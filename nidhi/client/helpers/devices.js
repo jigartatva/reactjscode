@@ -12,7 +12,7 @@ export function isBrowser() {
 export function isAndroid() {
     if (isBrowser()) {
         const userAgent = navigator.userAgent || navigator.vendor;
-        return /android/i.test(userAgent);
+        return (/android/i).test(userAgent);
     }
     return false;
 }
@@ -23,7 +23,7 @@ export function isAndroid() {
 export function isIPhone() {
     if (isBrowser()) {
         const userAgent = navigator.userAgent || navigator.vendor;
-        return /iphone/i.test(userAgent);
+        return (/iphone/i).test(userAgent);
     }
     return false;
 }
@@ -33,7 +33,7 @@ export function isIPhone() {
  */
 export function isMobileOrTablet() {
     if (isBrowser()) {
-        return isAndroid() || isIPhone() || /webOS|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i.test(navigator.userAgent);
+        return isAndroid() || isIPhone() || (/webOS|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile/i).test(navigator.userAgent);
     }
     return false;
 }
@@ -73,7 +73,7 @@ export function isChrome() {
         const vendor = navigator.vendor || '',
             userAgent = navigator.userAgent || '';
 
-        return /Chrome/.test(userAgent) && /Google Inc/.test(vendor);
+        return (/Chrome/).test(userAgent) && (/Google Inc/).test(vendor);
     }
     return false;
 }
@@ -84,7 +84,7 @@ export function isChrome() {
 export function isMac() {
     if (isBrowser()) {
         const platform = navigator.platform.toLowerCase();
-        return !!~platform.indexOf('mac');
+        return Boolean(~platform.indexOf('mac'));
     }
     return false;
 }
@@ -102,19 +102,20 @@ export function isDesktopSafari() {
 export function isMacChrome() {
     return isMac() && isChrome();
 }
+
 /**
  * @returns {Boolean}
  */
-export function  isIE() {
-  var ua = window.navigator.userAgent;
-  var msie = ua.indexOf('MSIE ');
-  var trident = ua.indexOf('Trident/');
-  var edge = ua.indexOf('Edge/');
+export function isIE() {
+  const ua = window.navigator.userAgent;
+  const msie = ua.indexOf('MSIE ');
+  const trident = ua.indexOf('Trident/');
+  const edge = ua.indexOf('Edge/');
 
   if (msie > 0 || trident > 0 || edge > 0) {
     return true;
   }
 
-  // other browser
+  // Other browser
   return false;
 }

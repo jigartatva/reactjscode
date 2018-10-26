@@ -13,7 +13,7 @@ export default handleActions({
      * @param {String} action.modelId
      */
     ACTION_MODELS_NEW (state, action) {
-        return Object.assign({}, state, action);
+        return { ...state, ...action };
     },
 
     /**
@@ -22,7 +22,7 @@ export default handleActions({
      * @param {Array} action.models
      */
     ACTION_MODELS_LIST (state, action) {
-        return Object.assign({}, state, action);
+        return { ...state, ...action };
     },
 
     /**
@@ -31,7 +31,7 @@ export default handleActions({
      * @param {Array} action.models
      */
     ACTION_TEMPLATE_MODELS_LIST (state, action) {
-        return Object.assign({}, state, action);
+        return { ...state, ...action };
     },
 
     /**
@@ -40,7 +40,7 @@ export default handleActions({
      * @param {Array} action.models
      */
     ACTION_MODELS_DELETE (state, action) {
-        return Object.assign({}, state, action);
+        return { ...state, ...action };
     },
 
 
@@ -50,7 +50,7 @@ export default handleActions({
      * @param {String} action.modelId
      */
     ACTION_MODELS_DUPLICATE (state, action) {
-        return Object.assign({}, state, action);
+        return { ...state, ...action };
     },
 
     /**
@@ -59,6 +59,6 @@ export default handleActions({
      * @param {String} action.modelId
      */
     ACTION_GET_USER_STRIPE_DATA (state, action) {
-        return Object.assign({}, state, action);
+        return { ...state, ...action };
     },
 }, initialState)

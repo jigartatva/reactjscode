@@ -1,5 +1,6 @@
 import _ from 'lodash';
-var isLoadingArray = [];
+let isLoadingArray = [];
+
 /**
  * @param relationship
  * @param elements
@@ -54,7 +55,7 @@ export function getPreviousElementById(elements, elementId) {
     });
 
     if (index > 0) {
-        return elements[index-1];
+        return elements[index - 1];
     }
 
     return null;
@@ -79,8 +80,8 @@ export function getRelationshipById(relationships, relationshipId) {
  */
 export function getRelationshipByFromIdAndToId(relationships, fromId, toId) {
     return _.find(relationships, (relationship) => {
-        return relationship.fromId == fromId && relationship.toId == toId
-            || relationship.toId == toId && relationship.toId == fromId;
+        return relationship.fromId == fromId && relationship.toId == toId ||
+            relationship.toId == toId && relationship.toId == fromId;
     });
 }
 
@@ -107,8 +108,8 @@ export function getElementByName(elements, name) {
 export function getRelationshipByElementIdAndName(relationships, elements, elementId, name) {
     const relationshipsWithElementsById = getRelationshipsWithElements(relationships, elements, elementId);
     return _.find(relationshipsWithElementsById, (relationshipWithElement) => {
-        return _.get(relationshipWithElement, 'fromElement.name', {}) === name
-            || _.get(relationshipWithElement, 'toElement.name', {}) === name;
+        return _.get(relationshipWithElement, 'fromElement.name', {}) === name ||
+            _.get(relationshipWithElement, 'toElement.name', {}) === name;
     });
 }
 
@@ -130,6 +131,7 @@ export function getSuggestedElements(elements, relationships, elementIds = [], n
        return !_.includes(elementIds, element.id) && element.name.toLowerCase().indexOf(name.toLowerCase()) >= 0;
     });
 }
+
 /**
  * @param metadata
  * @param elementId
@@ -147,30 +149,30 @@ export function getUploadProcess() {
 export function setUploadProcess(array) {
   return isLoadingArray = array;
 }
+
 /**
  * @param {string} string
  * @returns {string}
  */
 export function getNameBetweenBraces(string) {
-    var matches = [];
-    var pattern = /\[(.*?)\]/g;
-    var match;
-    while ((match = pattern.exec(string)) != null)
-    {
+    const matches = [];
+    const pattern = /\[(.*?)\]/g;
+    let match;
+    while ((match = pattern.exec(string)) != null) {
         matches.push(match[1]);
     }
     return (!_.isEmpty(matches[0])) ? matches[0] : 'Untitled Model';
 }
+
 /**
  * @param {string} name
  * @returns {string}
  */
 export function getTemplateIconName(name) {
-    try{
-        var iconName = ((!_.isEmpty(name) && !_.isUndefined(name)) && typeof name == "string") ? name.split('|') : '';
-        return (iconName != '') ? require("../public/templates/"+iconName[iconName.length - 1]) : "../public/templates/template-default.svg"; 
-    }
-    catch (exception) {
+    try {
+        const iconName = ((!_.isEmpty(name) && !_.isUndefined(name)) && typeof name == "string") ? name.split('|') : '';
+        return (iconName != '') ? require(`../public/templates/${iconName[iconName.length - 1]}`) : "../public/templates/template-default.svg";
+    } catch (exception) {
         return "../public/templates/template-default.svg";
     }
 }

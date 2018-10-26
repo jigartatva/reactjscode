@@ -65,6 +65,7 @@ export function modelsNew() {
         );
     }
 }
+
 /**
  * @returns {function}
  */
@@ -130,7 +131,7 @@ export function setCheckBox(checkValue) {
     }
 }
 
-export function getCheckBox(){
+export function getCheckBox() {
     return (dispatch, getState) => {
         dispatch({
             type: ACTION_GET_CHECKBOX_VALUE,
@@ -151,6 +152,7 @@ export function getCheckBox(){
         );
     }
 }
+
 /**
  * @returns {function}
  */
@@ -172,7 +174,7 @@ export function setModelTipsCheckBox(modelCheckValue) {
     }
 }
 
-export function getModelTipsCheckBox(){
+export function getModelTipsCheckBox() {
     return (dispatch, getState) => {
         dispatch({
             type: ACTION_GET_NEW_MODEL_CHECKBOX_VALUE,
@@ -340,6 +342,7 @@ export function modelsName(name) {
         name
     }
 }
+
 /**
  * @param {string} modelId
  * @param {string} isPinned
@@ -352,6 +355,7 @@ export function modelSetPinned(isPinned) {
         isPinned
     }
 }
+
 /**
  * @param {string} modelId
  * @returns {function}
@@ -376,14 +380,13 @@ export function modelsLoadOnModify(modelId) {
     }
 }
 // Get Logged in User's Stripe data
-export function getStripeData(){  
+export function getStripeData() {
     return (dispatch, getState) => {
         dispatch({
             type: ACTION_GET_USER_STRIPE_DATA,
             actionStatus: ACTION_STATUS_REQUEST
         });
-        return firebaseStripedata().then(
-            (data) => {
+        return firebaseStripedata().then((data) => {
                 if (_.isObject(data)) {
                     return dispatch({
                         type: ACTION_GET_USER_STRIPE_DATA,
@@ -397,7 +400,6 @@ export function getStripeData(){
                         actionStatus: ACTION_STATUS_FAIL,
                     });
                 }
-            }
-        );
-    }  
+            });
+    }
 }

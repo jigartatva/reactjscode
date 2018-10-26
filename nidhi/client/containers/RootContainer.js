@@ -20,44 +20,41 @@ const muiTheme = getMuiTheme({
         pickerHeaderColor: lightGreen700
     }
 });
-var RootContainer = React.createClass({
+const RootContainer = React.createClass({
 
     componentDidMount() {
     },
 
     componentWillReceiveProps(nextProps, prevProps) {
 
-       var sharelink = _.split(nextProps.location.pathname, '/');
+       const sharelink = _.split(nextProps.location.pathname, '/');
         if (nextProps.location.pathname !== '/login' && nextProps.location.pathname !== '/signup') {
             if (actionFail(ACTION_SIGN_IN_STATUS, nextProps.login.type, nextProps.login.actionStatus)) {
                 if (sharelink[1] !== "share" && sharelink[1] !== "signup" && sharelink[1] !== "emailVerify" && sharelink[1] !== "forgotpassword") {
                     this.props.navigateToLoginScreen();
                 }
-            }
-            else if (actionSuccess(ACTION_SIGN_IN, nextProps.login.type, nextProps.login.actionStatus)) {
+            } else if (actionSuccess(ACTION_SIGN_IN, nextProps.login.type, nextProps.login.actionStatus)) {
                 window.Intercom('boot', {
                     app_id: config.intercomKey,
                     name: nextProps.login.user.displayName || nextProps.login.user.email, // Full name
                     email: nextProps.login.user.email, // Email address
                     created_at: Date.now() // Signup date as a Unix timestamp
                 });
-            }
-            else if (!this.props.login.user && nextProps.login.user) {
+            } else if (!this.props.login.user && nextProps.login.user) {
                 window.Intercom('boot', {
                     app_id: config.intercomKey,
                     name: nextProps.login.user.displayName || nextProps.login.user.email, // Full name
                     email: nextProps.login.user.email, // Email address
                     created_at: Date.now() // Signup date as a Unix timestamp
                 });
-            }
-            else if (nextProps.login.user) {
+            } else if (nextProps.login.user) {
                 window.Intercom('update', {
                     app_id: config.intercomKey,
                     name: nextProps.login.user.displayName || nextProps.login.user.email, // Full name
                     email: nextProps.login.user.email, // Email address
                     created_at: Date.now() // Signup date as a Unix timestamp
                 });
-            }else if (actionSuccess(ACTION_USER_PROFILE, nextProps.login.type, nextProps.login.actionStatus)) {
+            } else if (actionSuccess(ACTION_USER_PROFILE, nextProps.login.type, nextProps.login.actionStatus)) {
                 window.Intercom('boot', {
                     app_id: config.intercomKey,
                     name: nextProps.login.displayName || nextProps.login.email, // Full name

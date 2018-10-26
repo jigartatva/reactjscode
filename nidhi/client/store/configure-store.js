@@ -8,7 +8,7 @@ import Reactotron from "reactotron-react-js";
 
 export default function configureStore(initialState) {
 
-    //const createStore = Reactotron.createStore;
+    // Const createStore = Reactotron.createStore;
     const create = window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore;
     const createStoreWithMiddleware = applyMiddleware(
         thunk,

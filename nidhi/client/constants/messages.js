@@ -1,8 +1,8 @@
 export const LOGIN_ERRORS = {
-    'auth/user-not-found' : 'There is no user record corresponding to this identifier. The user may have been deleted.',
-    'auth/wrong-password' : 'The password is wrong',
-    'auth/invalid-email' : 'The email is invalid',
-    'auth/argument-error' : 'The email or password are wrong'
+    'auth/user-not-found': 'There is no user record corresponding to this identifier. The user may have been deleted.',
+    'auth/wrong-password': 'The password is wrong',
+    'auth/invalid-email': 'The email is invalid',
+    'auth/argument-error': 'The email or password are wrong'
 };
 
 export const INVITE_ERRORS = {
@@ -23,6 +23,6 @@ export const SIGNUP = {
 }
 export const MAILVERIFICATION = {
     'verifyLogin': 'Your account has not activated yet. Please check your email for activation link.',
-    'verifySignUp':'Please check your email for activation link',
-    'resetPassword':'Your password has been updated successfully.'
+    'verifySignUp': 'Please check your email for activation link',
+    'resetPassword': 'Your password has been updated successfully.'
 }
