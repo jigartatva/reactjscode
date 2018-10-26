@@ -1,0 +1,339 @@
+@import '../sass/config';
+@import '../sass/mixin';
+
+.snackbarSuccess{
+    width: auto;
+}
+.header {
+    .logoBar {
+        padding: 10px 25px;
+        box-sizing: border-box;
+        position: relative;
+        max-height: 120px;
+        height: 120px;
+        background-color: white;
+        display: table;
+        width: 100%;
+    }
+
+    .logo {
+        display:table-cell;
+        width: 30%;
+        vertical-align: middle;
+        &> img{
+            width: 100%;
+            max-width: 290px;
+        }
+    }
+    .searchBar {
+        display:table-cell;
+        vertical-align: middle;
+        width: 50%;
+        text-align: center;
+        &> .inputFieldContainer {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 550px;
+            position: relative;
+
+            &> .searchButton{
+                position: absolute !important;
+                right: 1px;
+                top: 1px;
+                background: $color-accent !important;
+                border-radius: 0 !important;
+                height:3.9rem !important;
+                width: 7rem !important;
+                border-left: 1px solid $color-darkest !important;
+                color: $color-lighter !important;
+                box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+                &> span{
+                    font-size: 28px;
+                }
+            }
+        }
+        
+    }
+    .headerActions {
+        display:table-cell;
+        vertical-align: middle;
+        margin-top: 15px;
+        margin-right: 15px;
+        width: 20%;
+        text-align: right;
+    }
+
+    /* theme */
+    .iconMenu {
+        width: auto;
+        height: auto;
+        display: inline-block;
+        
+        @media screen and (max-width: 900px) {
+            padding: $gutter-small;
+        }
+        > span {
+            font-size: $icon-size-larger !important;
+            color: $color-medium !important;
+        }
+        & > button{
+            width: 74px !important;
+            height: 70px !important;
+            margin-left:5px !important;
+        }
+        & > button:not(.accountDropDown){
+            width: 78px !important;
+        }
+    }
+
+    .iconButton {
+        padding: $gutter-small;
+        width: auto;
+        height: 46px;
+
+        > .icon {
+            font-size: $icon-size-larger;
+            color: $color-medium;
+        }
+    }
+    .inputField {
+        color: #747474;
+        background:$color-light;
+        border: 1px solid #4A4A4A;
+        padding: 10px;
+        width: calc(100% - 22px);
+        .confirmPassword{
+            &> input{
+                margin-bottom: 44px;
+            }
+        }
+        .toggleButton {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .toggleButton {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        .changedPassword {
+            float: right;
+          }
+    }
+    
+    .avatarChangeButton {
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        background-color: #000;
+        opacity: 0.7;
+        color: #fff;
+        display: block;
+        text-transform: initial;
+        font-size: 1.2rem;
+        text-align: center;
+        width: 80px;
+        z-index: 99999;
+    }
+    .accountMenu{
+        padding:20px 15px !important;
+        background-color: initial !important;
+        cursor: default !important;
+    }
+}
+.changeButtonOuter {
+        height:80px;
+        width:80px;
+        border: 1px solid gray;
+        border-radius: 90%;
+        position: absolute;
+        top: 19px;
+        left: 12px;
+        overflow: hidden;
+        cursor: pointer !important;
+    }
+.changeButtonOuterWhenNoIcon {
+        height:80px;
+        width:80px;
+        border-radius: 90%;
+        position: absolute;
+        overflow: hidden;
+        top: 23px;
+        left: 17px;
+        cursor: pointer !important;
+    }
+.changePictureButton{
+    // background-color: red;
+    z-index: 0;
+    &:hover{
+        background-color: transparent !important;
+    }
+}
+.letsGoButton {
+  background: #6cb021;
+  border: 1px solid #4a4a4a;
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 6px;
+  font-family: Roboto;
+  font-size: 12px;
+  color: #ffffff;
+  letter-spacing: 0.86px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-transform: none;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 14px;
+  padding: 0 1.5rem;
+}
+.signoutButton {
+    background: transparent !important;
+    color: #4a4a4a !important;
+    border: 1px solid #4a4a4a !important;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24) !important;
+    text-shadow: none !important;
+    border-radius: 4px !important;
+    padding: 0 3rem;
+    float: left;
+}
+.downArrowClass {
+        font-size: 2.4rem !important;
+        top: 23px;
+        position: absolute;
+    }
+.accountCircleClass {
+        font-size: 3.6rem !important;
+        color: rgb(136, 136, 136);
+    }
+.menuDetailOuter {
+        display: inline-block;
+        vertical-align: top;
+        padding: 0px 10px;
+        height: 80px;
+        position: relative;
+        & span{
+            display: flex;
+            font-size: 1.2rem;
+            padding-bottom: 5px;
+        }
+    }
+.menuDisplayName {
+        font-weight: 700;
+    }
+.menuEmail {
+        color: #999999;
+    }
+.bigAvatar {
+        width: 60;
+    height: 60
+    }
+.avatarChangeButton {
+    position: absolute;
+    bottom: 6px;
+    background-color: #000;
+    opacity: 0.7;
+    color: #fff;
+    display: block;
+    width:80px;
+    text-transform: initial;
+    font-size: 1.1rem;
+    padding: 2px 0px;
+    text-align: center;
+    width: 80px;
+    z-index: 99999;
+    }
+
+    .menuItemCommon{
+        border-bottom:1px solid black;
+        line-height:50px;
+        height: 50px !important;
+        display: flex !important;
+        align-items: center;
+    }
+    .accountMenuClass{
+         background-color: rgb(242, 242, 242);
+         position: absolute;
+         top: 93px;
+         right: 40px;
+         z-index: 2001;
+         box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 25px, rgba(0, 0, 0, 0.22) 0px 10px 25px;
+        ul{
+            padding: 0px;
+        }
+    }
+    .accountMenuClassWithNoPhoto{
+         background-color: rgb(242, 242, 242);
+         position: absolute;
+         top: 88px;
+        right: 35px;
+         z-index: 2001;
+         box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 25px, rgba(0, 0, 0, 0.22) 0px 10px 25px;
+        ul{
+            padding: 0px;
+        }
+    }
+.topArrow{
+    width: 50px;
+    height: 16px;
+    position: absolute;
+    overflow: hidden;
+    top: 65%;
+    right: 35px;
+    z-index: 5555;
+    &:after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 20px;
+        background: #fff;
+        transform: rotate(45deg);
+        top: 9px;
+        left: 10px;
+        box-shadow: -1px -1px 5px -2px rgba(0, 0, 0, 0.5);
+    }
+}
+.topArrowWithNoPhoto{
+    width: 50px;
+    height: 80px;
+    position: absolute;
+    overflow: hidden;
+    // box-shadow: 0 16px 10px -17px rgba(0, 0, 0, 0.5);
+    top: 7%;
+    right: 33px;
+    &:after {
+   content: "";
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background: #fff;
+    transform: rotate(45deg);
+    top: 75px;
+    left: 10px;
+    box-shadow: -1px -1px 5px -2px rgba(0, 0, 0, 0.5);
+}
+}
+.signOutOuter{
+    padding-top:6px !important;
+}
+.accountDropDown{
+    color:black;
+}
+span.accountDropDown{
+    position: absolute;
+    top: 23px;
+}
+.inlineBlock{
+    display: inline-block;
+}
+.accountDropDownIcon{
+    display: inline-block !important;
+    border: 2px solid #4A4A4A;
+    overflow: hidden !important;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.loveSpreadClass > div > div > div > div:nth-child(2){
+    @media (max-height: 590px) {
+        padding: 30px 0 !important;
+    }
+}

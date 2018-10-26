@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2" />
+    <title>Project Title</title>
+    <link rel="icon" type="image/png" href="/public/favicon.png" />
+    <!--<link rel="stylesheet" href="/public/css/material.css" type="text/css" />
+    <link rel="stylesheet" href="/public/css/roboto.css" type="text/css" />-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div id="root"></div>
+<script src="//d3js.org/d3.v3.js"></script>
+<script id="stripe-js" src="https://js.stripe.com/v3/"></script>
+<script>
+    var WebFontConfig = {
+        google: {families: ['Roboto:400,300,500,700:latin']}
+    };
+    (function () {
+        var wf = document.createElement('script');
+        wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+                '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+        wf.type = 'text/javascript';
+        wf.async = 'true';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(wf, s);
+    })();
+</script>
+<script>
+    //prevent navigating when pressing too many backspaces in inputs
+    window.addEventListener('keydown', function (e) {
+        if (!e) {
+            return;
+        }
+        const key       = (e.key || e.code || '').toLowerCase();
+        const nodeName  = e.target.nodeName.toLowerCase();
+
+        if (['backspace', 'delete'].indexOf(key) >= 0) {
+            if (nodeName === 'body'
+                || ['input', 'textarea', 'checkbox', 'button'].indexOf(nodeName) >= 0 && !e.target.value && e.target.value !==0) {
+                e.preventDefault();
+            }
+        }
+    });
+</script>
+    <style>
+        body .__react_component_tooltip{
+            padding: 6px 10px !important;
+        }
+        body .__react_component_tooltip.type-success {
+            background-color: #515151 !important;
+        }
+        body .__react_component_tooltip.type-success.show {
+            opacity: 0.9;
+        }
+        body .__react_component_tooltip.type-success.place-bottom:after {
+            border-bottom-color: #515151 !important;
+        }
+        body .__react_component_tooltip.type-success.place-left:after {
+            border-left-color: #515151 !important;
+        }
+        body .__react_component_tooltip.type-success.place-top:after {
+            border-top-color: #515151 !important;
+        }
+        body .__react_component_tooltip.type-success.place-right:after {
+            border-right-color: #515151 !important;
+        }
+        @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+            #intercom-container{
+                z-index: auto !important;
+            }
+        }
+    </style>
+</body>
+</html>

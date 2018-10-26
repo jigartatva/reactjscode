@@ -1,0 +1,33 @@
+@import '../../sass/config';
+@import '../../sass/mixin';
+
+.model {
+    cursor: pointer;
+    overflow: inherit;
+
+    .footer {
+        padding: $gutter-normal;
+    }
+
+    .text {
+        color: $color-darkest;
+
+        .name {
+            @include ellipsis();
+            overflow: hidden;
+            font-size: $font-size-medium;
+            padding-bottom: 3px;
+        }
+        .updated {
+            @include ellipsis();
+            overflow: hidden;
+            color: $color-medium;
+            margin-top: $gutter-normal;
+            font-size: $font-size-small;
+        }
+    }
+
+    .actions {
+        float: right;
+    }
+}
