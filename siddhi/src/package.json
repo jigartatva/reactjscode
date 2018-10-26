@@ -1,0 +1,65 @@
+{
+  "name": "employee-directory-app",
+  "description": "Sample employee directory app built with React and Firebase",
+  "scripts": {
+    "createfirebaseconf": "firebase setup:web --json > ../functions/firebase-config.json",
+    "buildClient": "./node_modules/.bin/webpack --config ./webpack.client.config.js",
+    "buildServer": "./node_modules/.bin/webpack --config ./webpack.server.config.js",
+    "build": "npm run createfirebaseconf && npm run buildClient && npm run buildServer",
+    "buildSource": "npm run buildClient && npm run buildServer"
+  },
+  "dependencies": {
+    "firebase": "4.8.0",
+    "jquery": "^3.3.1",
+    "lodash": "4.17.4",
+    "moment": "^2.22.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-helmet": "^5.2.0",
+    "react-image-lazy-load": "^1.3.0",
+    "react-masonry-component": "^6.2.1",
+    "react-paginate": "^5.2.3",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "remarkable": "^1.7.1",
+    "remarkable-react": "^1.3.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.3.13",
+    "babel-register": "^6.26.0",
+    "webpack": "^4.15.1",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^2.1.5",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false,
+          "useBuiltIns": "usage"
+        }
+      ],
+      "es2015",
+      "react",
+      "jest"
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          "react"
+        ],
+        "plugins": [
+          "transform-es2015-modules-commonjs"
+        ]
+      }
+    }
+  }
+}
